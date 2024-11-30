@@ -1,4 +1,4 @@
-# Adhi-To Do List
+# To Do List
 
 A simple, responsive, and visually appealing To-Do List web application built with HTML, CSS, and JavaScript. This application allows users to manage their tasks efficiently, with features like task addition, deletion, and marking tasks as completed. Tasks are stored in the browser's local storage, ensuring persistence across sessions.
 
@@ -20,4 +20,5 @@ A simple, responsive, and visually appealing To-Do List web application built wi
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/username/repository-name.git
+   git clone git clone https://github.com/ADHITHYAN9/TO-DO-LIST.git
+

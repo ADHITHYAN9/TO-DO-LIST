@@ -1,0 +1,165 @@
+<! DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Adhi-to do list</title>
+
+</head>
+<style>
+    *{
+        margin: 0;
+        padding: 0;
+        font-family: 'Poppins', sans-serif;
+        box-sizing: border-box;
+        }
+        .container{
+            width: 100%;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #153677, #4e085f);
+            padding: 10px;
+        }
+        .to-app{
+            width: 100%;
+            max-width: 540px;
+            background: #fff;
+            margin: 100px auto 20px;
+            padding: 40px 30px 70px;
+            border-radius: 10px;
+        }
+        .todo-app h2{
+            color: #002765;
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }  
+        .todo-app h2 img {
+            width: 30px;
+            margin-left: 10px;
+        }
+        .row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: #edeef0;
+            border-radius: 30px;
+            padding-left: 20px;
+            margin-bottom: 25px;
+        }
+        input {
+            flex: 1;
+            border: none;
+            outline: none;
+            background: transparent;
+            padding: 10px;
+        }
+        button{
+            border: none;
+            outline: none;
+            padding: 16px 50px;
+            background: #ff5945;
+            color: #f5f3f3;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 40px;
+        }
+        ul li{
+            list-style: none;
+            font-size: 17px;
+            padding: 12px 8px 12px 50px;
+            user-select: none;
+            cursor: pointer;
+            position: relative;
+        }
+        ul li::before{
+            content:' ';
+            position: absolute;
+            height: 28px;
+            width: 28px;
+            border-radius: 50%;
+            background-image: url(https://upload.wikimedia.org/wikipedia/commons/thumb/a/a0/Circle_-_black_simple.svg/800px-Circle_-_black_simple.svg.png);
+            background-size: cover;
+            background-position: center;
+            top: 12px;
+            left: 8px;
+        }
+        ul li.checked{
+            color: #8a8989;
+            text-decoration: line-through;
+        }
+        ul li.checked::before{
+            background-image: url(https://icons.iconarchive.com/icons/matiasam/ios7-style/512/Clear-Tick-icon.png);
+        }
+        ul li span{
+            position: absolute;
+            right: 0;
+            top: 5px;
+            width: 40px;
+            height: 40px;
+            font-size: 22px;
+            color: #555;
+            line-height: 40px;
+            text-align: center;
+            border-radius: 50%;
+        }
+        ul li span:hover{
+            background: #edeef0;
+        
+        }
+</style>
+<body>
+    <div class="container">
+        <div class="to-app">
+            <h2>To Do List <img src="data:image/png;base64,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"> </h2>
+            <div class="row">
+                <input type="text" id="input-box" placeholder="text add your text">
+                <button onclick="addTask()">Add</button>
+            </div>
+            <ul id="list-container">
+                
+
+            </ul>
+        </div>
+    </div>
+<script >
+    const inputBox = document.getElementById("input-box");
+const listContainer = document.getElementById("list-container");
+
+function addTask(){
+    if(inputBox.value === ''){
+        alert("You must write something!");
+    }
+
+    else{
+        let li = document.createElement("li");
+        li.innerHTML = inputBox.value;
+        listContainer.appendChild(li);
+        let span = document.createElement("span");
+        span. innerHTML = "\u00d7";
+        li.appendChild(span);
+    }
+    inputBox.value="";
+    saveData();
+}
+listContainer .addEventListener("click", function(e){
+    if(e.target. tagName === "LI") {
+        e.target.classList.toggle("checked");
+        saveData();
+    }
+    
+    else if(e.target. tagName === "SPAN") {
+        e. target. parentElement. remove ();
+        saveData();
+    }   
+}, false);
+function saveData() {
+    localStorage.setItem("data", listContainer.innerHTML);
+}
+function showTask(){
+    listContainer.innerHTML = localStorage.getItem("data");
+}
+showTask();
+    
+    
+</script>
+</body>
+</html>
